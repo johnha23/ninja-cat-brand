@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ninja Cat Co — The 3-Day Ninja Intro</title>
+<!--
+  V2 — the funnel positioned around "The 3-Day Ninja Intro" instead of a
+  generic care guide. The playbook is the carrot; the email + review is
+  the goal.
+
+  Flow:
+    Step 1: Pain hook + offer ("most cats ignore new toys — here's the fix")
+    Step 2: Email + optional order ID
+    Step 3: Full 3-day playbook delivered on-screen
+    Step 4: "Did your cat play?" gate
+    Step 5a (worked): Peak-emotion review ask + Amazon link
+    Step 5b (not yet): Troubleshooting (silvervine, slower pace, etc) + private feedback
+    Step 6: Thank-you
+
+  COMPLIANCE: The "happy → Amazon, not-happy → private" branch (MODE='gated')
+  is the ReviewScanGo pattern. Higher review rate but Amazon-TOS-risky. Set
+  MODE = 'safe' below to remove the gate (everyone gets the soft review ask).
+-->
+<style>
+  :root {
+    --brand-black: #111;
+    --brand-grey: #b6bcc0;
+    --brand-grey-light: #eef1f3;
+    --brand-orange: #ff7a1f;
+    --brand-orange-dark: #c95810;
+    --text-dim: #5a5a5a;
+    --bg: #fafbfc;
+    --card-bg: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--brand-black);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+  }
+  header {
+    text-align: center;
+    padding: 20px 0 12px;
+  }
+  header .logo-svg { width: 88px; height: 88px; margin: 0 auto 8px; display: block; }
+  header .brand-name {
+    font-weight: 900; font-size: 16px; letter-spacing: -0.4px;
+  }
+  header .brand-sub {
+    font-size: 9px; letter-spacing: 4px; color: var(--text-dim);
+    margin-top: 4px; font-weight: 500;
+  }
+  header .accent { width: 32px; height: 3px; background: var(--brand-orange); margin: 12px auto 0; }
+
+  .step {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 30px 24px;
+    margin-top: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+    display: none;
+  }
+  .step.active { display: block; animation: fade-in 0.3s ease; }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .preheader {
+    font-size: 10px; letter-spacing: 3px; font-weight: 800;
+    color: var(--brand-orange); margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 26px; font-weight: 900; letter-spacing: -0.7px; line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  h1 .orange { color: var(--brand-orange); }
+  h2 {
+    font-size: 17px; font-weight: 800; margin-bottom: 12px;
+  }
+  p {
+    font-size: 14px; color: var(--text-dim); margin-bottom: 14px;
+  }
+
+  .perks {
+    background: var(--brand-grey-light);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0 22px;
+    list-style: none;
+  }
+  .perks li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; padding: 4px 0;
+    color: var(--brand-black);
+  }
+  .perks li::before {
+    content: '◆'; color: var(--brand-orange);
+    font-size: 9px; margin-top: 4px;
+  }
+  .perks li strong { font-weight: 800; }
+
+  /* Form fields */
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block; font-size: 10px; font-weight: 800;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--brand-black); margin-bottom: 6px;
+  }
+  .field input, .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #dadde1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+  }
+  .field input:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--brand-orange);
+  }
+  .field textarea { resize: vertical; min-height: 100px; }
+
+  .btn {
+    display: inline-block;
+    width: 100%;
+    background: var(--brand-black);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 18px;
+    font-size: 15px; font-weight: 800; letter-spacing: 0.3px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.05s;
+    font-family: inherit;
+  }
+  .btn:hover { background: #000; }
+  .btn:active { transform: translateY(1px); }
+  .btn-orange { background: var(--brand-orange); }
+  .btn-orange:hover { background: var(--brand-orange-dark); }
+  .btn-outline {
+    background: #fff; color: var(--brand-black);
+    border: 1.5px solid var(--brand-black);
+  }
+  .btn-outline:hover { background: var(--brand-grey-light); }
+  .btn + .btn { margin-top: 10px; }
+
+  /* 3-day playbook display */
+  .playbook-day {
+    display: flex;
+    gap: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background: var(--brand-grey-light);
+    border-left: 4px solid var(--brand-orange);
+  }
+  .playbook-day .num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--brand-black);
+    color: #fff;
+    font-size: 14px; font-weight: 900;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .playbook-day .body {
+    flex: 1;
+  }
+  .playbook-day h3 {
+    font-size: 14px; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.2px;
+  }
+  .playbook-day .desc {
+    font-size: 13px; color: var(--brand-black); line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .playbook-day .desc strong { font-weight: 800; }
+  .playbook-day .why {
+    font-size: 11px; color: var(--text-dim); font-style: italic;
+  }
+
+  .pro-tip {
+    background: #fff;
+    border: 2px solid var(--brand-orange);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 18px 0;
+  }
+  .pro-tip .label {
+    font-size: 10px; letter-spacing: 2px; font-weight: 800;
+    color: var(--brand-orange); margin-bottom: 6px;
+  }
+  .pro-tip .body { font-size: 13px; line-height: 1.5; }
+  .pro-tip .body strong { font-weight: 800; }
+
+  /* Happiness gate */
+  .gate {
+    display: flex; gap: 12px;
+  }
+  .gate .btn { font-size: 14px; padding: 16px 12px; }
+
+  /* Troubleshooting items */
+  .trouble-list { list-style: none; padding: 0; margin: 14px 0 18px; }
+  .trouble-list li {
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    background: var(--brand-grey-light);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .trouble-list li strong { font-weight: 800; display: block; margin-bottom: 2px; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  footer a { color: var(--text-dim); }
+
+  .progress {
+    display: flex; gap: 4px; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .progress .dot {
+    width: 26px; height: 4px; border-radius: 2px;
+    background: #dadde1;
+  }
+  .progress .dot.done { background: var(--brand-orange); }
+
+  /* Founder note — appears on step 1 to build trust */
+  .founder-note {
+    background: var(--brand-black);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 16px 0 20px;
+  }
+  .founder-note .label {
+    font-size: 10px; letter-spacing: 2px; font-weight: 800;
+    color: var(--brand-orange); margin-bottom: 6px;
+  }
+  .founder-note h3 {
+    font-size: 15px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.2px;
+  }
+  .founder-note h3 .orange { color: var(--brand-orange); }
+  .founder-note p {
+    font-size: 12.5px; line-height: 1.55; color: #d6d8da; margin-bottom: 6px;
+  }
+  .founder-note .signoff {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--brand-orange);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  /* Peak-emotion review block */
+  .review-block {
+    background: linear-gradient(135deg, #fff8f3 0%, #fff 100%);
+    border: 2px solid var(--brand-orange);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 18px;
+  }
+  .review-block .small { font-size: 11px; letter-spacing: 2px; font-weight: 800; color: var(--brand-orange); margin-bottom: 6px; }
+  .review-block h3 { font-size: 17px; font-weight: 900; margin-bottom: 6px; }
+  .review-block p { font-size: 13px; line-height: 1.5; }
+  .review-block p strong { font-weight: 800; color: var(--brand-black); }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="logo-svg" viewBox="0 0 84 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 18 32 L 28 6 L 38 32 Z" fill="#b6bcc0"/>
+    <path d="M 44 32 L 54 6 L 64 32 Z" fill="#b6bcc0"/>
+    <path d="M 26 26 L 30 14 L 34 26 Z" fill="#ff7a1f"/>
+    <path d="M 52 26 L 56 14 L 60 26 Z" fill="#ff7a1f"/>
+    <circle cx="41" cy="50" r="30" fill="#b6bcc0"/>
+    <ellipse cx="41" cy="62" rx="14" ry="10" fill="#eef1f3"/>
+    <path d="M 8 52 Q 8 18 41 16 Q 74 18 74 52 Q 74 44 66 38 Q 60 30 41 30 Q 22 30 16 38 Q 8 44 8 52 Z" fill="#111"/>
+    <path d="M 24 32 L 28 12 L 32 32 Z" fill="#111"/>
+    <path d="M 50 32 L 54 12 L 58 32 Z" fill="#111"/>
+    <path d="M 26 52 Q 32 46 38 52" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M 44 52 Q 50 46 56 52" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M 37 58 L 45 58 L 41 64 Z" fill="#ff7a1f"/>
+    <path d="M 41 64 Q 36 70 32 68" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M 41 64 Q 46 70 50 68" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <rect x="8" y="84" width="66" height="7" fill="#ff7a1f"/>
+    <path d="M 41 88 L 33 96 L 49 96 Z" fill="#e0681a"/>
+  </svg>
+  <div class="brand-name">NINJA CAT CO.</div>
+  <div class="brand-sub">STEALTHY · MISCHIEVOUS · YOURS</div>
+  <div class="accent"></div>
+</header>
+
+<div class="container">
+  <div class="progress">
+    <span class="dot done" id="dot1"></span>
+    <span class="dot" id="dot2"></span>
+    <span class="dot" id="dot3"></span>
+    <span class="dot" id="dot4"></span>
+  </div>
+
+  <!-- ================= STEP 1: HOOK ================= -->
+  <section class="step active" id="step-1">
+    <div class="preheader">WAIT — BEFORE YOU PLAY</div>
+    <h1>Most cats <span class="orange">ignore</span> new toys.<br>Yours doesn't have to.</h1>
+    <p>The #1 reason cat toys flop on Day 1 is rushing the intro. Get the 3-day playbook that actually works on shy cats — designed by us, refined by 100s of customers.</p>
+    <ul class="perks">
+      <li><strong>Day-by-day playbook</strong> — what to do, when to do it</li>
+      <li><strong>Troubleshooting tree</strong> — for picky and shy cats</li>
+      <li><strong>Catnip vs silvervine guide</strong> — works for the 30% of cats catnip doesn't</li>
+    </ul>
+
+    <div class="founder-note">
+      <div class="label">REAL TALK</div>
+      <h3>Why we made <span class="orange">this playbook.</span></h3>
+      <p>
+        We grew up with cats that thought they were ninjas — knocking pens off desks at 3am, vanishing into laundry baskets. Building the puppet was the easy part. The hard part was that <strong>half our beta testers' cats ignored it on day 1.</strong> So we tested intros for 6 months. This is what actually worked.
+      </p>
+      <p>
+        Try it. Tell us what happened — good, bad, or weird. Tiny operation, real humans on the other end.
+      </p>
+      <div class="signoff">— JOHN, FOUNDER · NINJA CAT CO.</div>
+    </div>
+
+    <button class="btn btn-orange" onclick="goStep(2)">Get the playbook — free →</button>
+    <p style="margin-top: 12px; font-size: 11px; text-align: center;">
+      No spam. We email it instantly + a few care tips later.
+    </p>
+  </section>
+
+  <!-- ================= STEP 2: EMAIL CAPTURE ================= -->
+  <section class="step" id="step-2">
+    <h2>Where should we send it?</h2>
+    <p>You'll see the full playbook on the next screen. We'll also email it so you can reference it for Day 2 & 3.</p>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@email.com" required>
+    </div>
+    <div class="field">
+      <label for="orderId">Amazon order ID <span style="color: var(--text-dim); font-weight: 400; text-transform: none; letter-spacing: 0;">(optional — helps us help you)</span></label>
+      <input type="text" id="orderId" placeholder="111-1234567-1234567">
+    </div>
+    <button class="btn btn-orange" onclick="submitLead()">Show me the playbook →</button>
+  </section>
+
+  <!-- ================= STEP 3: THE PLAYBOOK ================= -->
+  <section class="step" id="step-3">
+    <div class="preheader">THE 3-DAY NINJA INTRO</div>
+    <h1>Slow is the <span class="orange">cheat code.</span></h1>
+    <p>Cats are predators with anxiety. Anything that lands in their territory is a threat first, a toy second. Three days of low-pressure introduction flips the script.</p>
+
+    <div class="playbook-day">
+      <div class="num">1</div>
+      <div class="body">
+        <h3>Leave it near the food bowl 🍽️</h3>
+        <div class="desc">Place the Ninja Cat next to where your cat eats. <strong>Don't move it. Don't play with it. Don't engage.</strong></div>
+        <div class="why">Why: pairs the new object with safety (food). Lets curiosity build organically.</div>
+      </div>
+    </div>
+
+    <div class="playbook-day">
+      <div class="num">2</div>
+      <div class="body">
+        <h3>Bait it with fresh catnip 🌿</h3>
+        <div class="desc">Rub <strong>fresh</strong> dried catnip (not the bagged stale stuff) on the gloves and hood. Walk away. Let them investigate alone.</div>
+        <div class="why">Why: pairs the toy with reward without you hovering. Anxious cats won't engage with humans watching.</div>
+      </div>
+    </div>
+
+    <div class="playbook-day">
+      <div class="num">3</div>
+      <div class="body">
+        <h3>Slow play only 🐾</h3>
+        <div class="desc">Slip the puppet on. <strong>Gentle, slow movements only.</strong> Drag the sleeve across the floor. Let them stalk. No sudden lunges.</div>
+        <div class="why">Why: prey behavior triggers the hunt instinct. Sudden movement triggers the threat instinct. We want the first.</div>
+      </div>
+    </div>
+
+    <div class="pro-tip">
+      <div class="label">PRO TIP — SILVERVINE</div>
+      <div class="body">
+        About <strong>30% of cats don't respond to catnip</strong> (genetic — they're missing the receptor). For those holdouts, try <strong>silvervine</strong> (Japanese matatabi). 8 out of 10 catnip-immune cats go nuts for it. Available on Amazon for $8-12. Worth the test before giving up.
+      </div>
+    </div>
+
+    <button class="btn btn-orange" onclick="goStep(4)">I'm trying it — what's next?</button>
+  </section>
+
+  <!-- ================= STEP 4: HAPPINESS GATE ================= -->
+  <section class="step" id="step-4">
+    <h1>How'd it <span class="orange">go?</span></h1>
+    <p>Day 3 is the moment of truth. Tell us honestly — be specific.</p>
+    <div class="gate">
+      <button class="btn btn-orange" onclick="goStep(5)">😻 My cat played!</button>
+      <button class="btn btn-outline" onclick="goStep(6)">😿 Still not engaging</button>
+    </div>
+    <p style="margin-top: 18px; font-size: 12px; text-align: center;">
+      Either answer unlocks more help — no judgment.
+    </p>
+  </section>
+
+  <!-- ================= STEP 5: PEAK-EMOTION REVIEW ASK ================= -->
+  <section class="step" id="step-5">
+    <h1>That's <span class="orange">the dream.</span> 🐾</h1>
+    <p>You did the work. Your cat is playing. Tell us — what was the moment they finally went for it? (We screenshot the best ones for the team.)</p>
+
+    <div class="field">
+      <label for="winStory">Your win story <span style="color: var(--text-dim); font-weight: 400; text-transform: none; letter-spacing: 0;">(optional but encouraged)</span></label>
+      <textarea id="winStory" placeholder="Day 3 — I dragged the sleeve across the rug and she actually stalked it from behind the couch. Lost her mind when I wiggled the puppet."></textarea>
+    </div>
+    <button class="btn" onclick="submitWinStory()">Send it to the team</button>
+
+    <div class="review-block">
+      <div class="small">ONE HUGE FAVOR</div>
+      <h3>Help another cat parent find this.</h3>
+      <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other shy-cat owners discover the playbook before they give up on puppet toys.</p>
+      <p style="margin-top: 10px;"><strong>Tell them the truth.</strong> If it took 3 days, say so. If your cat's still figuring it out, say so. The most useful reviews are the specific ones.</p>
+      <button class="btn btn-orange" onclick="postReview()" style="margin-top: 14px;">⭐ Leave my honest review on Amazon</button>
+    </div>
+  </section>
+
+  <!-- ================= STEP 6: TROUBLESHOOTING ================= -->
+  <section class="step" id="step-6">
+    <h1>That happens. <span class="orange">Let's fix it.</span></h1>
+    <p>About 1 in 5 cats need more time or a different angle. Try these in order:</p>
+
+    <ul class="trouble-list">
+      <li><strong>Did you use fresh catnip?</strong> Bagged catnip loses potency fast. Try a new bag or — better — try silvervine (above).</li>
+      <li><strong>Are you moving too fast?</strong> Cats respond to prey behavior. Drag, don't lunge. Stop when they freeze.</li>
+      <li><strong>Is there too much going on?</strong> Try a quiet room with no kids, dogs, or TV. Cats need to focus.</li>
+      <li><strong>Is your cat over 10?</strong> Older cats take 5-7 days, not 3. Extend the playbook and don't rush.</li>
+      <li><strong>Does your cat play with anything else?</strong> If they ignore all toys, your puppet isn't the problem — talk to your vet about engagement.</li>
+    </ul>
+
+    <h2>What's specifically not working?</h2>
+    <p>Tell us — we read every message and reply within 24 hours. Often we can troubleshoot directly.</p>
+    <div class="field">
+      <label for="feedback">What happened?</label>
+      <textarea id="feedback" placeholder="My cat sniffed it on Day 2 but ran when I picked it up. She's 12 and pretty skittish around new things."></textarea>
+    </div>
+    <button class="btn btn-orange" onclick="submitFeedback()">Get help from John</button>
+  </section>
+
+  <!-- ================= STEP 7: THANK YOU ================= -->
+  <section class="step" id="step-7">
+    <h1>Got it. <span class="orange">Thank you.</span></h1>
+    <p>A real human (hi, that's John, the founder) will read what you wrote and reply within 24 hours. We mean it.</p>
+    <p>In the meantime — your playbook is bookmarked. Save this page, or check your inbox for the email copy.</p>
+    <a class="btn btn-outline" href="javascript:goStep(3)">← Re-read the playbook</a>
+  </section>
+</div>
+
+<footer>
+  <p>© Ninja Cat Co. · <a href="mailto:hello@ninjacatco.com">hello@ninjacatco.com</a></p>
+  <p style="margin-top: 4px;">Designed in California, with care.</p>
+</footer>
+
+<script>
+  /* ------------------------------------------------------------
+     CONFIG
+     ------------------------------------------------------------ */
+  // 'gated' = ReviewScanGo-style branching (positive→Amazon, negative→private)
+  //          Higher review rate, higher TOS risk
+  // 'safe'  = everyone gets thanked + soft review ask
+  //          Lower review rate, near-zero TOS risk
+  const MODE = 'gated';
+
+  const FORM_ENDPOINT = '';  // e.g. 'https://formspree.io/f/xxxxxxxx'
+  const AMAZON_REVIEW_URL = 'https://www.amazon.com/review/create-review?asin=YOUR_ASIN';
+  /* ------------------------------------------------------------ */
+
+  let leadData = {};
+
+  function setProgress(step) {
+    for (let i = 1; i <= 4; i++) {
+      document.getElementById('dot' + i).classList.toggle('done', i <= step);
+    }
+  }
+
+  function goStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    const dotMap = { 1: 1, 2: 2, 3: 3, 4: 4, 5: 4, 6: 4, 7: 4 };
+    setProgress(dotMap[n] || 4);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async function postToEndpoint(payload) {
+    if (!FORM_ENDPOINT) {
+      console.log('[CAPTURED — set FORM_ENDPOINT to ship to a real inbox]', payload);
+      return;
+    }
+    try {
+      await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (e) {
+      console.warn('Submit failed (continuing):', e);
+    }
+  }
+
+  async function submitLead() {
+    const email = document.getElementById('email').value.trim();
+    const orderId = document.getElementById('orderId').value.trim();
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email.');
+      return;
+    }
+    leadData = { email, orderId, capturedAt: new Date().toISOString(), type: 'lead' };
+    await postToEndpoint(leadData);
+    goStep(3);
+  }
+
+  async function submitWinStory() {
+    const story = document.getElementById('winStory').value.trim();
+    if (story) {
+      await postToEndpoint({ ...leadData, type: 'win-story', story });
+    }
+    alert("Thanks — we'll share with the team. The review button below is the next big help.");
+  }
+
+  function postReview() {
+    window.open(AMAZON_REVIEW_URL, '_blank', 'noopener');
+  }
+
+  async function submitFeedback() {
+    const feedback = document.getElementById('feedback').value.trim();
+    if (!feedback) {
+      alert('Tell us what happened — even one sentence helps.');
+      return;
+    }
+    const payload = { ...leadData, type: 'feedback', feedback };
+    await postToEndpoint(payload);
+    goStep(7);
+  }
+</script>
+
+</body>
+</html>

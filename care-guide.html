@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 3-Day Ninja Intro — Ninja Cat Co.</title>
+<!--
+  V2 — repurposed from generic care guide to the printable / bookmark-able
+  version of the 3-Day Ninja Intro playbook. Email recipients land here from
+  their "your playbook PDF" link. Also printable as a one-pager.
+-->
+<style>
+  :root {
+    --brand-black: #111;
+    --brand-grey: #b6bcc0;
+    --brand-grey-light: #eef1f3;
+    --brand-orange: #ff7a1f;
+    --text-dim: #5a5a5a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--brand-black);
+    background: #fafbfc;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+    background: #fff;
+  }
+  header {
+    text-align: center;
+    padding-bottom: 26px;
+    border-bottom: 2px solid var(--brand-black);
+    margin-bottom: 28px;
+  }
+  header .logo-svg { width: 80px; height: 80px; margin: 0 auto 10px; display: block; }
+  header .brand-name {
+    font-weight: 900; font-size: 20px; letter-spacing: -0.5px;
+  }
+  header .brand-sub {
+    font-size: 9px; letter-spacing: 5px; color: var(--text-dim);
+    margin-top: 5px; font-weight: 500;
+  }
+  header .preheader {
+    font-size: 10px; letter-spacing: 3px; font-weight: 800;
+    color: var(--brand-orange); margin-top: 22px;
+  }
+  header h1 {
+    font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-top: 6px;
+    line-height: 1.05;
+  }
+  header h1 .orange { color: var(--brand-orange); }
+  header .lead {
+    margin-top: 10px; font-size: 14px; color: var(--text-dim);
+  }
+
+  .intro-box {
+    background: var(--brand-black);
+    color: #fff;
+    padding: 22px 24px;
+    border-radius: 10px;
+    margin-bottom: 26px;
+  }
+  .intro-box h2 {
+    font-size: 17px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.2px;
+  }
+  .intro-box p {
+    font-size: 13px; line-height: 1.55; color: #d6d8da;
+  }
+  .intro-box p strong { color: #fff; font-weight: 800; }
+
+  section { margin-bottom: 30px; page-break-inside: avoid; }
+  section h2 {
+    font-size: 18px; font-weight: 900;
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e3e6;
+  }
+
+  .day {
+    display: flex; gap: 16px;
+    padding: 18px;
+    border-radius: 10px;
+    background: var(--brand-grey-light);
+    border-left: 4px solid var(--brand-orange);
+    margin-bottom: 14px;
+  }
+  .day .num {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: var(--brand-black);
+    color: #fff;
+    font-size: 15px; font-weight: 900;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .day .body { flex: 1; }
+  .day h3 {
+    font-size: 15px; font-weight: 900; margin-bottom: 6px; letter-spacing: -0.2px;
+  }
+  .day .what {
+    font-size: 14px; color: var(--brand-black); line-height: 1.55;
+    margin-bottom: 8px;
+  }
+  .day .what strong { font-weight: 800; }
+  .day .why {
+    font-size: 12px; color: var(--text-dim); font-style: italic;
+    padding-top: 6px;
+    border-top: 1px dashed #d4d6d8;
+  }
+  .day .why strong { font-style: normal; font-weight: 700; color: var(--brand-black); }
+
+  .pro-tip {
+    background: #fff;
+    border: 2px solid var(--brand-orange);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 22px 0;
+  }
+  .pro-tip .label {
+    font-size: 10px; letter-spacing: 2.5px; font-weight: 800;
+    color: var(--brand-orange); margin-bottom: 8px;
+  }
+  .pro-tip h3 {
+    font-size: 15px; font-weight: 900; margin-bottom: 6px;
+  }
+  .pro-tip p { font-size: 13px; line-height: 1.55; color: var(--brand-black); }
+  .pro-tip p strong { font-weight: 800; }
+  .pro-tip p + p { margin-top: 8px; }
+
+  .trouble {
+    display: grid; gap: 10px;
+    margin-top: 14px;
+  }
+  .trouble li {
+    list-style: none;
+    padding: 12px 14px;
+    background: var(--brand-grey-light);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .trouble li strong { display: block; font-weight: 800; margin-bottom: 2px; }
+
+  .signoff {
+    background: var(--brand-black);
+    color: #fff;
+    padding: 22px 24px;
+    border-radius: 10px;
+    margin-top: 18px;
+    text-align: center;
+  }
+  .signoff h3 {
+    font-size: 17px; font-weight: 900; margin-bottom: 8px;
+  }
+  .signoff h3 .orange { color: var(--brand-orange); }
+  .signoff p { font-size: 13px; color: #d6d8da; line-height: 1.55; }
+  .signoff .name {
+    margin-top: 14px; font-size: 12px; color: var(--brand-orange);
+    font-weight: 800; letter-spacing: 1px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 13px 20px;
+    background: var(--brand-orange);
+    color: #fff;
+    font-size: 14px; font-weight: 800;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 14px;
+  }
+
+  footer {
+    text-align: center;
+    padding-top: 24px;
+    margin-top: 32px;
+    border-top: 1px solid #e0e3e6;
+    font-size: 11px; color: var(--text-dim);
+  }
+  footer a { color: var(--text-dim); }
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; max-width: 100%; }
+    section, .day { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <svg class="logo-svg" viewBox="0 0 84 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 18 32 L 28 6 L 38 32 Z" fill="#b6bcc0"/>
+      <path d="M 44 32 L 54 6 L 64 32 Z" fill="#b6bcc0"/>
+      <path d="M 26 26 L 30 14 L 34 26 Z" fill="#ff7a1f"/>
+      <path d="M 52 26 L 56 14 L 60 26 Z" fill="#ff7a1f"/>
+      <circle cx="41" cy="50" r="30" fill="#b6bcc0"/>
+      <ellipse cx="41" cy="62" rx="14" ry="10" fill="#eef1f3"/>
+      <path d="M 8 52 Q 8 18 41 16 Q 74 18 74 52 Q 74 44 66 38 Q 60 30 41 30 Q 22 30 16 38 Q 8 44 8 52 Z" fill="#111"/>
+      <path d="M 24 32 L 28 12 L 32 32 Z" fill="#111"/>
+      <path d="M 50 32 L 54 12 L 58 32 Z" fill="#111"/>
+      <path d="M 26 52 Q 32 46 38 52" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 44 52 Q 50 46 56 52" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 37 58 L 45 58 L 41 64 Z" fill="#ff7a1f"/>
+      <path d="M 41 64 Q 36 70 32 68" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M 41 64 Q 46 70 50 68" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <rect x="8" y="84" width="66" height="7" fill="#ff7a1f"/>
+      <path d="M 41 88 L 33 96 L 49 96 Z" fill="#e0681a"/>
+    </svg>
+    <div class="brand-name">NINJA CAT CO.</div>
+    <div class="brand-sub">STEALTHY · MISCHIEVOUS · YOURS</div>
+    <div class="preheader">FREE PLAYBOOK · KEEP THIS PAGE</div>
+    <h1>The 3-Day <span class="orange">Ninja Intro</span></h1>
+    <p class="lead">The playbook that turns shy cats into engaged ones — built for picky cats, works on the curious too.</p>
+  </header>
+
+  <div class="intro-box">
+    <h2>Why slow wins.</h2>
+    <p>
+      Cats are predators with anxiety. Anything new is a threat first, a toy second. <strong>Rushing the intro is the #1 reason cat toys end up in the closet.</strong> Three days of low-pressure exposure flips the script — your cat's curiosity has to outweigh their suspicion. The playbook below is exactly how to do it.
+    </p>
+  </div>
+
+  <section>
+    <h2>The Playbook</h2>
+
+    <div class="day">
+      <div class="num">1</div>
+      <div class="body">
+        <h3>Leave it near the food bowl 🍽️</h3>
+        <div class="what">Place the Ninja Cat next to where your cat eats. <strong>Don't move it. Don't play with it. Don't engage at all.</strong> Just let it sit there for the entire day.</div>
+        <div class="why"><strong>Why this works:</strong> Pairing a new object with their existing safe space (food bowl = no threat) lets your cat sniff and inspect on their own terms. Curiosity builds when nobody is pushing.</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="num">2</div>
+      <div class="body">
+        <h3>Bait with fresh catnip 🌿</h3>
+        <div class="what">Rub <strong>fresh dried catnip</strong> on the gloves and the hood — generously. Use a fresh bag, not stale leaves. Walk away. Don't watch. Don't hover.</div>
+        <div class="why"><strong>Why this works:</strong> The reward pairing (catnip = good feeling) attaches to the toy itself. Anxious cats won't engage with humans watching — solo investigation is critical.</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="num">3</div>
+      <div class="body">
+        <h3>Slow play only 🐾</h3>
+        <div class="what">Slip the puppet on. <strong>Slow, dragging movements only.</strong> Drag the sleeve across the floor like prey wounded and trying to escape. No sudden lunges. If they freeze, you stop too.</div>
+        <div class="why"><strong>Why this works:</strong> Slow, low-to-the-ground movement triggers the hunt instinct (predator). Fast, erratic movement triggers the threat instinct (flight). You want the first response, not the second.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pro-tip">
+    <div class="label">PRO TIP — FOR THE 30%</div>
+    <h3>If catnip doesn't work, try silvervine.</h3>
+    <p>
+      About <strong>30% of cats genetically don't respond to catnip</strong> — they're missing the receptor. If your cat sniffs the catnip and walks away unimpressed, switch to <strong>silvervine</strong> (Japanese matatabi). Studies show <strong>~80% of catnip-immune cats respond strongly to silvervine</strong>.
+    </p>
+    <p>
+      Available on Amazon for $8-12. Try the powder form first — rub it on the puppet just like you would catnip. If your cat is one of the silvervine responders, you'll know within minutes.
+    </p>
+  </div>
+
+  <section>
+    <h2>If Day 3 doesn't work — try this</h2>
+    <p style="font-size: 13px; color: var(--text-dim); margin-bottom: 4px;">About 1 in 5 cats need more than 3 days, or a different angle. Work through these in order:</p>
+    <ul class="trouble">
+      <li>
+        <strong>1. Is your catnip fresh?</strong>
+        Bagged catnip loses potency fast. A new bag (or silvervine, above) often fixes everything.
+      </li>
+      <li>
+        <strong>2. Are you moving too fast?</strong>
+        Cats respond to prey behavior — drag, don't lunge. Stop when they freeze. Resume slow.
+      </li>
+      <li>
+        <strong>3. Is there too much going on?</strong>
+        Quiet room. No kids, dogs, or TV. Cats need to focus to engage.
+      </li>
+      <li>
+        <strong>4. Is your cat over 10?</strong>
+        Senior cats often need 5-7 days, not 3. Extend the playbook — don't rush them.
+      </li>
+      <li>
+        <strong>5. Does your cat play with anything?</strong>
+        If they ignore all toys, the puppet isn't the problem. Worth a vet check for engagement / dental pain.
+      </li>
+    </ul>
+  </section>
+
+  <div class="signoff">
+    <h3>Need help? <span class="orange">We'll reply within 24 hours.</span></h3>
+    <p>
+      A real human (hi, that's John, the founder) reads every message. If the playbook isn't clicking with your cat, send specifics — age, breed, what they did, what they didn't — and we'll troubleshoot directly. We didn't make this product to ship and forget.
+    </p>
+    <a href="mailto:hello@ninjacatco.com" class="btn">📧 Email me directly</a>
+    <div class="name">— JOHN, FOUNDER · NINJA CAT CO.</div>
+  </div>
+
+  <footer>
+    <p>© Ninja Cat Co. · <a href="mailto:hello@ninjacatco.com">hello@ninjacatco.com</a> · <a href="https://ninjacatco.com">ninjacatco.com</a></p>
+    <p style="margin-top: 4px;">Designed in California with care · Print this anytime — it's yours.</p>
+  </footer>
+</div>
+</body>
+</html>

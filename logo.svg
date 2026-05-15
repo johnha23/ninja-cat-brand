@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ninja Cat Co — primary horizontal logo
+  Palette: black (#111), grey (#b6bcc0), accent orange (#ff7a1f)
+  Designed to match the v3 product mockup: grey-silver tabby cat,
+  black hood, orange tied belt accent.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 100" width="520" height="200">
+  <!-- ============ MARK (cat in hood) ============ -->
+  <g transform="translate(8,4)">
+    <!-- Ears (grey, pointed) -->
+    <path d="M 18 32 L 28 6 L 38 32 Z" fill="#b6bcc0"/>
+    <path d="M 44 32 L 54 6 L 64 32 Z" fill="#b6bcc0"/>
+    <!-- Inner ear (orange accent) -->
+    <path d="M 26 26 L 30 14 L 34 26 Z" fill="#ff7a1f"/>
+    <path d="M 52 26 L 56 14 L 60 26 Z" fill="#ff7a1f"/>
+    <!-- Face circle (grey-silver tabby) -->
+    <circle cx="41" cy="50" r="30" fill="#b6bcc0"/>
+    <!-- Face highlights (white underbelly / chin / chest) -->
+    <ellipse cx="41" cy="62" rx="14" ry="10" fill="#eef1f3"/>
+    <!-- Hood (black, drapes over upper face) -->
+    <path d="M 8 52
+             Q 8 18 41 16
+             Q 74 18 74 52
+             Q 74 44 66 38
+             Q 60 30 41 30
+             Q 22 30 16 38
+             Q 8 44 8 52 Z"
+          fill="#111"/>
+    <!-- Hood cutouts so ears poke through -->
+    <path d="M 24 32 L 28 12 L 32 32 Z" fill="#111"/>
+    <path d="M 50 32 L 54 12 L 58 32 Z" fill="#111"/>
+    <!-- Eyes (narrow ninja gaze) -->
+    <path d="M 26 52 Q 32 46 38 52" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M 44 52 Q 50 46 56 52" stroke="#111" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Whiskers -->
+    <line x1="6"  y1="60" x2="22" y2="60" stroke="#7a7a7a" stroke-width="0.8"/>
+    <line x1="6"  y1="64" x2="22" y2="64" stroke="#7a7a7a" stroke-width="0.8"/>
+    <line x1="60" y1="60" x2="76" y2="60" stroke="#7a7a7a" stroke-width="0.8"/>
+    <line x1="60" y1="64" x2="76" y2="64" stroke="#7a7a7a" stroke-width="0.8"/>
+    <!-- Nose -->
+    <path d="M 37 58 L 45 58 L 41 64 Z" fill="#ff7a1f"/>
+    <!-- Mouth -->
+    <path d="M 41 64 Q 36 70 32 68" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M 41 64 Q 46 70 50 68" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Orange belt tied in bow below face -->
+    <rect x="8" y="84" width="66" height="7" fill="#ff7a1f"/>
+    <path d="M 41 88 L 33 96 L 49 96 Z" fill="#e0681a"/>
+    <path d="M 37 88 L 41 92 L 45 88 Z" fill="#c95810"/>
+  </g>
+
+  <!-- ============ WORDMARK ============ -->
+  <g transform="translate(96,4)">
+    <text x="0" y="50" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-weight="900" font-size="32" fill="#111" letter-spacing="-1">NINJA CAT</text>
+    <text x="0" y="74" font-family="'Helvetica Neue', Arial, sans-serif"
+          font-weight="500" font-size="13" fill="#777" letter-spacing="8">COMPANY</text>
+    <!-- Orange underline -->
+    <rect x="0" y="80" width="42" height="3" fill="#ff7a1f"/>
+  </g>
+</svg>
