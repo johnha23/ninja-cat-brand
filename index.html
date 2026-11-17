@@ -5,22 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ninja Cat Co — The 3-Day Ninja Intro</title>
 <!--
-  V2 — the funnel positioned around "The 3-Day Ninja Intro" instead of a
-  generic care guide. The playbook is the carrot; the email + review is
-  the goal.
+  V3 (2026-11-16) — QR target from the insert card + retail box.
 
   Flow:
     Step 1: Pain hook + offer ("most cats ignore new toys — here's the fix")
-    Step 2: Email + optional order ID
-    Step 3: Full 3-day playbook delivered on-screen
-    Step 4: "Did your cat play?" gate
-    Step 5a (worked): Peak-emotion review ask + Amazon link
-    Step 5b (not yet): Troubleshooting (silvervine, slower pace, etc) + private feedback
-    Step 6: Thank-you
-
-  COMPLIANCE: The "happy → Amazon, not-happy → private" branch (MODE='gated')
-  is the ReviewScanGo pattern. Higher review rate but Amazon-TOS-risky. Set
-  MODE = 'safe' below to remove the gate (everyone gets the soft review ask).
+    Step 3: Full 3-day playbook on-screen (no email gate — there is no inbox)
+    Step 4: "How'd it go?" — routes to help content only
+    Step 5 (worked) / Step 6 (not yet: troubleshooting + Amazon contact-seller)
+      Both show the SAME neutral review ask. Do not re-introduce a
+      happy-only review branch: that is review gating (Amazon-prohibited).
 -->
 <style>
   :root {
@@ -319,7 +312,7 @@
   <section class="step active" id="step-1">
     <div class="preheader">WAIT — BEFORE YOU PLAY</div>
     <h1>Most cats <span class="orange">ignore</span> new toys.<br>Yours doesn't have to.</h1>
-    <p>The #1 reason cat toys flop on Day 1 is rushing the intro. Get the 3-day playbook that actually works on shy cats — designed by us, refined by 100s of customers.</p>
+    <p>The #1 reason cat toys flop on Day 1 is rushing the intro. Get the 3-day playbook that actually works on shy cats.</p>
     <ul class="perks">
       <li><strong>Day-by-day playbook</strong> — what to do, when to do it</li>
       <li><strong>Troubleshooting tree</strong> — for picky and shy cats</li>
@@ -338,25 +331,10 @@
       <div class="signoff">— JOHN, FOUNDER · NINJA CAT CO.</div>
     </div>
 
-    <button class="btn btn-orange" onclick="goStep(2)">Get the playbook — free →</button>
+    <button class="btn btn-orange" onclick="goStep(3)">Show me the playbook — free →</button>
     <p style="margin-top: 12px; font-size: 11px; text-align: center;">
-      No spam. We email it instantly + a few care tips later.
+      No sign-up. Bookmark this page to come back on Day 2 &amp; 3.
     </p>
-  </section>
-
-  <!-- ================= STEP 2: EMAIL CAPTURE ================= -->
-  <section class="step" id="step-2">
-    <h2>Where should we send it?</h2>
-    <p>You'll see the full playbook on the next screen. We'll also email it so you can reference it for Day 2 & 3.</p>
-    <div class="field">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="you@email.com" required>
-    </div>
-    <div class="field">
-      <label for="orderId">Amazon order ID <span style="color: var(--text-dim); font-weight: 400; text-transform: none; letter-spacing: 0;">(optional — helps us help you)</span></label>
-      <input type="text" id="orderId" placeholder="111-1234567-1234567">
-    </div>
-    <button class="btn btn-orange" onclick="submitLead()">Show me the playbook →</button>
   </section>
 
   <!-- ================= STEP 3: THE PLAYBOOK ================= -->
@@ -402,7 +380,11 @@
     <button class="btn btn-orange" onclick="goStep(4)">I'm trying it — what's next?</button>
   </section>
 
-  <!-- ================= STEP 4: HAPPINESS GATE ================= -->
+  <!-- ================= STEP 4: HOW'D IT GO (routes to help content only) =================
+       COMPLIANCE: both answers get the IDENTICAL review ask (step 5 and step 6 share the
+       same review block). Never show the review ask to only one branch — that is review
+       gating, which Amazon prohibits. Fixed 2026-11-16. -->
+
   <section class="step" id="step-4">
     <h1>How'd it <span class="orange">go?</span></h1>
     <p>Day 3 is the moment of truth. Tell us honestly — be specific.</p>
@@ -415,16 +397,10 @@
     </p>
   </section>
 
-  <!-- ================= STEP 5: PEAK-EMOTION REVIEW ASK ================= -->
+  <!-- ================= STEP 5: IT WORKED ================= -->
   <section class="step" id="step-5">
     <h1>That's <span class="orange">the dream.</span> 🐾</h1>
-    <p>You did the work. Your cat is playing. Tell us — what was the moment they finally went for it? (We screenshot the best ones for the team.)</p>
-
-    <div class="field">
-      <label for="winStory">Your win story <span style="color: var(--text-dim); font-weight: 400; text-transform: none; letter-spacing: 0;">(optional but encouraged)</span></label>
-      <textarea id="winStory" placeholder="Day 3 — I dragged the sleeve across the rug and she actually stalked it from behind the couch. Lost her mind when I wiggled the puppet."></textarea>
-    </div>
-    <button class="btn" onclick="submitWinStory()">Send it to the team</button>
+    <p>You did the work. Your cat is playing. Keep sessions short (5–10 minutes) and end while they still want more — that keeps the puppet exciting for weeks.</p>
 
     <div class="review-block">
       <div class="small">ONE HUGE FAVOR</div>
@@ -448,26 +424,23 @@
       <li><strong>Does your cat play with anything else?</strong> If they ignore all toys, your puppet isn't the problem — talk to your vet about engagement.</li>
     </ul>
 
-    <h2>What's specifically not working?</h2>
-    <p>Tell us — we read every message and reply within 24 hours. Often we can troubleshoot directly.</p>
-    <div class="field">
-      <label for="feedback">What happened?</label>
-      <textarea id="feedback" placeholder="My cat sniffed it on Day 2 but ran when I picked it up. She's 12 and pretty skittish around new things."></textarea>
-    </div>
-    <button class="btn btn-orange" onclick="submitFeedback()">Get help from John</button>
-  </section>
+    <h2>Still stuck? Ask John.</h2>
+    <p>Message us through Amazon and we'll troubleshoot directly — tell us your cat's age and what they did. Go to <strong>Your Orders</strong> → find your Ninja Cat order → <strong>Contact seller</strong>.</p>
+    <a class="btn btn-orange" href="https://www.amazon.com/gp/css/order-history" target="_blank" rel="noopener">Open Your Orders on Amazon →</a>
 
-  <!-- ================= STEP 7: THANK YOU ================= -->
-  <section class="step" id="step-7">
-    <h1>Got it. <span class="orange">Thank you.</span></h1>
-    <p>A real human (hi, that's John, the founder) will read what you wrote and reply within 24 hours. We mean it.</p>
-    <p>In the meantime — your playbook is bookmarked. Save this page, or check your inbox for the email copy.</p>
-    <a class="btn btn-outline" href="javascript:goStep(3)">← Re-read the playbook</a>
+    <div class="review-block">
+      <div class="small">ONE HUGE FAVOR</div>
+      <h3>Help another cat parent find this.</h3>
+      <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other shy-cat owners decide if this is right for their cat.</p>
+      <p style="margin-top: 10px;"><strong>Tell them the truth.</strong> If it took 3 days, say so. If your cat's still figuring it out, say so. The most useful reviews are the specific ones.</p>
+      <button class="btn btn-orange" onclick="postReview()" style="margin-top: 14px;">⭐ Leave my honest review on Amazon</button>
+    </div>
+    <a class="btn btn-outline" href="javascript:goStep(3)" style="margin-top: 14px;">← Re-read the playbook</a>
   </section>
 </div>
 
 <footer>
-  <p>© Ninja Cat Co. · <a href="mailto:hello@ninjacatco.com">hello@ninjacatco.com</a></p>
+  <p>© Ninja Cat Co. · Questions? Message us from your Amazon order.</p>
   <p style="margin-top: 4px;">Designed in California, with care.</p>
 </footer>
 
@@ -475,17 +448,10 @@
   /* ------------------------------------------------------------
      CONFIG
      ------------------------------------------------------------ */
-  // 'gated' = ReviewScanGo-style branching (positive→Amazon, negative→private)
-  //          Higher review rate, higher TOS risk
-  // 'safe'  = everyone gets thanked + soft review ask
-  //          Lower review rate, near-zero TOS risk
-  const MODE = 'gated';
-
-  const FORM_ENDPOINT = '';  // e.g. 'https://formspree.io/f/xxxxxxxx'
-  const AMAZON_REVIEW_URL = 'https://www.amazon.com/review/create-review?asin=YOUR_ASIN';
+  // Ninja Cat Wrestling Glove, NC-CWG-01. No email capture / forms: there is no inbox
+  // behind this site, so customer contact goes through Amazon buyer-seller messaging.
+  const AMAZON_REVIEW_URL = 'https://www.amazon.com/review/create-review?asin=B0HDC1H3K7';
   /* ------------------------------------------------------------ */
-
-  let leadData = {};
 
   function setProgress(step) {
     for (let i = 1; i <= 4; i++) {
@@ -501,55 +467,8 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  async function postToEndpoint(payload) {
-    if (!FORM_ENDPOINT) {
-      console.log('[CAPTURED — set FORM_ENDPOINT to ship to a real inbox]', payload);
-      return;
-    }
-    try {
-      await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-    } catch (e) {
-      console.warn('Submit failed (continuing):', e);
-    }
-  }
-
-  async function submitLead() {
-    const email = document.getElementById('email').value.trim();
-    const orderId = document.getElementById('orderId').value.trim();
-    if (!email || !email.includes('@')) {
-      alert('Please enter a valid email.');
-      return;
-    }
-    leadData = { email, orderId, capturedAt: new Date().toISOString(), type: 'lead' };
-    await postToEndpoint(leadData);
-    goStep(3);
-  }
-
-  async function submitWinStory() {
-    const story = document.getElementById('winStory').value.trim();
-    if (story) {
-      await postToEndpoint({ ...leadData, type: 'win-story', story });
-    }
-    alert("Thanks — we'll share with the team. The review button below is the next big help.");
-  }
-
   function postReview() {
     window.open(AMAZON_REVIEW_URL, '_blank', 'noopener');
-  }
-
-  async function submitFeedback() {
-    const feedback = document.getElementById('feedback').value.trim();
-    if (!feedback) {
-      alert('Tell us what happened — even one sentence helps.');
-      return;
-    }
-    const payload = { ...leadData, type: 'feedback', feedback };
-    await postToEndpoint(payload);
-    goStep(7);
   }
 </script>
 
