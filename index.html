@@ -17,7 +17,7 @@
   V5 (2026-11-22) — QR target from the insert card + retail box.
   Light theme (John's call): white ground, ink headlines, black header bar + orange hairline
   carries the brand. Inter 900/700/500, orange eyebrow above every headline, ONE orange word
-  per headline. Orange TEXT uses #B85A0B (brand #F5821F is only 2.6:1 on white — fails
+  per headline. Orange TEXT uses #AD5208 (brand #F5821F is only 2.6:1 on white — fails
   WCAG); #F5821F is kept for fills, rules, borders and buttons.
 
   Flow:
@@ -53,7 +53,7 @@
     --dim: #5f6570;          /* tertiary text */
     --orange: #f5821f;       /* fills, rules, borders, buttons */
     --orange-dark: #e2720f;
-    --orange-text: #b85a0b;  /* orange TEXT on white (4.7:1) */
+    --orange-text: #ad5208;  /* orange TEXT: 5.3:1 on white, 4.9:1 on cards */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -225,7 +225,7 @@
 <!-- ================= CHECK-IN POP-UP (shows on load) ================= -->
 <div class="overlay" id="checkin" role="dialog" aria-modal="true" aria-labelledby="checkin-title">
   <div class="modal">
-    <img class="mark" src="assets/favicon-64.png" width="64" height="64" alt="">
+    <img class="mark" src="assets/logo-mark.png" width="320" height="320" alt="">
     <div class="eyebrow">Quick check-in</div>
     <h1 id="checkin-title">How's it <span class="orange">going</span> so far?</h1>
     <p>Tell us where you're at and we'll take you to the right place.</p>
