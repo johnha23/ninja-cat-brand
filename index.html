@@ -12,9 +12,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!--
   V4 (2026-11-22) — QR target from the insert card + retail box.
   Theme = brand DESIGN.md v2 "Night and orange": ink #0F0F10 ground, panel #17181B,
@@ -30,6 +28,17 @@
       happy-only review branch: that is review gating (Amazon-prohibited).
 -->
 <style>
+  /* Inter, self-hosted (variable, latin subset, 500-900) — no render-blocking third-party CSS */
+  @font-face {
+    font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
+    src: url('assets/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Arial sized to Inter's metrics so the swap doesn't shift layout (CLS) */
+  @font-face {
+    font-family: 'Inter Fallback'; src: local('Arial');
+    size-adjust: 107.4%; ascent-override: 90.2%; descent-override: 22.48%; line-gap-override: 0%;
+  }
   :root {
     --ink: #0f0f10;          /* primary ground */
     --panel: #17181b;        /* raised cards */
@@ -42,7 +51,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
-    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', 'Inter Fallback', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 500;
     background: var(--ink);
     color: var(--grey);
