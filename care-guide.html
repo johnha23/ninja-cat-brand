@@ -11,105 +11,87 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!--
-  V3 (2026-11-22) — printable / bookmark-able version of the 3-Day Ninja Intro.
-  Screen = brand DESIGN.md v2 dark theme (ink #0F0F10, Inter, one orange word per headline).
-  Print = light fallback (saves ink), same type system.
+  V4 (2026-11-22) — printable / bookmark-able version of the 3-Day Ninja Intro.
+  Light theme to match index.html: white ground, black header bar + orange hairline, Inter,
+  one orange word per headline. Orange TEXT = #B85A0B (WCAG on white); #F5821F for fills/rules.
 -->
 <style>
-  /* Inter, self-hosted (variable, latin subset, 500-900) — no render-blocking third-party CSS */
   @font-face {
     font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
     src: url('assets/inter-latin.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
-  /* Arial sized to Inter's metrics so the swap doesn't shift layout (CLS) */
   @font-face {
     font-family: 'Inter Fallback'; src: local('Arial');
     size-adjust: 107.4%; ascent-override: 90.2%; descent-override: 22.48%; line-gap-override: 0%;
   }
   :root {
-    --ink: #0f0f10; --panel: #17181b; --stroke: #26282c;
-    --orange: #f5821f; --orange-dark: #d96d10;
-    --white: #ffffff; --grey: #c7cbd1; --dim: #8a9099;
+    --ink: #0f0f10; --bg: #ffffff; --surface: #f6f6f7; --line: #e5e6e9;
+    --body: #3a3f47; --dim: #5f6570;
+    --orange: #f5821f; --orange-dark: #e2720f; --orange-text: #b85a0b;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body {
     font-family: 'Inter', 'Inter Fallback', 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 500;
-    color: var(--grey);
-    background: var(--ink);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
+    font-weight: 500; color: var(--body); background: var(--bg);
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
   }
-  .topbar {
-    border-bottom: 2px solid var(--orange);
-    text-align: center; padding: 18px 20px 14px;
-  }
+  .topbar { background: var(--ink); border-bottom: 3px solid var(--orange); text-align: center; padding: 18px 20px 14px; }
   .topbar .lockup { display: block; width: 210px; height: auto; margin: 0 auto; }
-  .topbar .tagline { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; color: var(--dim); margin-top: 6px; }
+  .topbar .tagline { font-size: 10px; font-weight: 700; letter-spacing: 3.5px; color: #8a9099; margin-top: 6px; }
 
   .page { max-width: 720px; margin: 0 auto; padding: 32px 22px 48px; }
 
   .hero { text-align: center; margin-bottom: 26px; }
-  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
-  h1 { font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1.05; color: var(--white); }
-  h1 .orange, h2 .orange, h3 .orange { color: var(--orange); }
-  .lead { margin-top: 12px; font-size: 15px; color: var(--grey); }
-  strong { color: var(--white); font-weight: 700; }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--orange-text); margin-bottom: 10px; }
+  h1 { font-size: 34px; font-weight: 900; letter-spacing: -1px; line-height: 1.05; color: var(--ink); }
+  .orange { color: var(--orange-text); }
+  .lead { margin-top: 12px; font-size: 15px; }
+  strong { color: var(--ink); font-weight: 700; }
 
-  .intro-box {
-    background: var(--panel); border: 1px solid var(--stroke);
-    padding: 22px 22px; border-radius: 12px; margin-bottom: 28px;
-  }
-  .intro-box h2 { font-size: 18px; font-weight: 900; color: var(--white); margin-bottom: 8px; letter-spacing: -0.3px; }
+  .intro-box { background: var(--surface); border: 1px solid var(--line); padding: 22px; border-radius: 12px; margin-bottom: 28px; }
+  .intro-box h2 { font-size: 18px; font-weight: 900; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.3px; }
   .intro-box p { font-size: 14px; line-height: 1.6; }
 
   section { margin-bottom: 30px; page-break-inside: avoid; }
   section > h2 {
-    font-size: 20px; font-weight: 900; color: var(--white); letter-spacing: -0.4px;
-    margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--stroke);
+    font-size: 20px; font-weight: 900; color: var(--ink); letter-spacing: -0.4px;
+    margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line);
   }
-  .section-sub { font-size: 14px; color: var(--grey); margin-bottom: 4px; }
+  .section-sub { font-size: 14px; margin-bottom: 4px; }
 
   .day {
     display: flex; gap: 16px; padding: 18px; margin-bottom: 14px;
-    border-radius: 10px; background: var(--panel);
-    border: 1px solid var(--stroke); border-left: 3px solid var(--orange);
+    border-radius: 10px; background: var(--surface);
+    border: 1px solid var(--line); border-left: 3px solid var(--orange);
   }
   .day .num {
     flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
-    background: var(--ink); border: 1.5px solid var(--orange);
-    color: var(--white); font-size: 16px; font-weight: 900;
+    background: var(--ink); color: #fff; font-size: 16px; font-weight: 900;
     display: flex; align-items: center; justify-content: center;
   }
   .day .body { flex: 1; }
-  .day .day-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--orange); margin-bottom: 2px; }
-  .day h3 { font-size: 16px; font-weight: 900; color: var(--white); margin-bottom: 6px; letter-spacing: -0.2px; }
+  .day .day-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--orange-text); margin-bottom: 2px; }
+  .day h3 { font-size: 16px; font-weight: 900; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.2px; }
   .day .what { font-size: 14px; line-height: 1.55; margin-bottom: 8px; }
-  .day .why { font-size: 13px; color: var(--dim); padding-top: 8px; border-top: 1px dashed var(--stroke); }
-  .day .why strong { color: var(--grey); }
+  .day .why { font-size: 13px; color: var(--dim); padding-top: 8px; border-top: 1px dashed #d4d6da; }
+  .day .why strong { color: var(--body); }
 
   .pro-tip { border: 1.5px solid var(--orange); border-radius: 10px; padding: 18px 20px; margin: 22px 0 30px; }
-  .label { font-size: 10px; letter-spacing: 3px; font-weight: 700; color: var(--orange); margin-bottom: 8px; }
-  .pro-tip h3 { font-size: 16px; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+  .label { font-size: 10px; letter-spacing: 3px; font-weight: 700; color: var(--orange-text); margin-bottom: 8px; }
+  .pro-tip h3 { font-size: 16px; font-weight: 900; color: var(--ink); margin-bottom: 6px; }
   .pro-tip p { font-size: 14px; line-height: 1.55; }
   .pro-tip p + p { margin-top: 8px; }
 
   .trouble { display: grid; gap: 10px; margin-top: 14px; list-style: none; }
-  .trouble li {
-    padding: 12px 14px; background: var(--panel); border: 1px solid var(--stroke);
-    border-radius: 8px; font-size: 14px; line-height: 1.5;
-  }
+  .trouble li { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; font-size: 14px; line-height: 1.5; }
   .trouble li strong { display: block; margin-bottom: 2px; }
 
-  .signoff {
-    background: var(--panel); border: 1px solid var(--stroke);
-    padding: 24px 22px; border-radius: 12px; margin-top: 18px; text-align: center;
-  }
-  .signoff h3 { font-size: 18px; font-weight: 900; color: var(--white); margin-bottom: 8px; letter-spacing: -0.3px; }
+  .signoff { background: var(--surface); border: 1px solid var(--line); padding: 24px 22px; border-radius: 12px; margin-top: 18px; text-align: center; }
+  .signoff h3 { font-size: 18px; font-weight: 900; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.3px; }
   .signoff p { font-size: 14px; line-height: 1.55; }
   .signoff p + p { margin-top: 8px; }
-  .signoff .name { margin-top: 14px; font-size: 11px; color: var(--orange); font-weight: 700; letter-spacing: 1px; }
+  .signoff .name { margin-top: 14px; font-size: 11px; color: var(--orange-text); font-weight: 700; letter-spacing: 1px; }
 
   .btn {
     display: inline-block; padding: 14px 22px; margin-top: 16px;
@@ -117,26 +99,13 @@
     font-size: 15px; font-weight: 800; text-decoration: none; border-radius: 8px;
   }
   .btn:hover { background: var(--orange-dark); }
-  .btn:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
+  .btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 
-  footer {
-    text-align: center; padding: 22px 20px 26px;
-    border-top: 1px solid var(--stroke); border-bottom: 6px solid var(--orange);
-    font-size: 12px; color: var(--dim);
-  }
-  footer a { color: var(--grey); }
+  footer { text-align: center; padding: 22px 20px 26px; border-top: 1px solid var(--line); border-bottom: 6px solid var(--orange); font-size: 12px; color: var(--dim); }
+  footer a { color: var(--body); }
   footer p + p { margin-top: 4px; }
 
   @media print {
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    html, body { background: #fff; color: #333; }
-    .topbar { background: var(--ink); }
-    h1, h2, h3, strong, .intro-box h2, .day h3, .pro-tip h3, .signoff h3 { color: var(--ink) !important; }
-    .intro-box, .day, .trouble li, .signoff { background: #fff; border-color: #ddd; }
-    .day .num { background: var(--ink); }
-    .day .num { color: #fff; }
-    .lead, .intro-box p, .day .what, .pro-tip p, .trouble li, .signoff p, .section-sub { color: #333; }
-    .day .why, footer { color: #666; }
     .btn { display: none; }
     .page { padding: 20px 0; max-width: 100%; }
     section, .day { page-break-inside: avoid; }
