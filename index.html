@@ -139,7 +139,7 @@
   }
   .playbook-day .body { flex: 1; }
   .playbook-day .day-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--orange); margin-bottom: 2px; }
-  .playbook-day h3 { font-size: 16px; font-weight: 900; color: var(--white); margin-bottom: 4px; letter-spacing: -0.2px; }
+  .playbook-day h2 { margin-top: 0;  font-size: 16px; font-weight: 900; color: var(--white); margin-bottom: 4px; letter-spacing: -0.2px; }
   .playbook-day .desc { font-size: 14px; color: var(--grey); line-height: 1.5; margin-bottom: 6px; }
   .playbook-day .why { font-size: 12.5px; color: var(--dim); }
 
@@ -173,7 +173,7 @@
     background: var(--ink); border: 1px solid var(--stroke);
     padding: 18px 18px; border-radius: 10px; margin: 18px 0 20px;
   }
-  .founder-note h3 { font-size: 16px; font-weight: 900; color: var(--white); margin-bottom: 8px; letter-spacing: -0.2px; }
+  .founder-note h2 { margin-top: 0;  font-size: 16px; font-weight: 900; color: var(--white); margin-bottom: 8px; letter-spacing: -0.2px; }
   .founder-note p { font-size: 13.5px; line-height: 1.55; margin-bottom: 8px; }
   .founder-note .signoff { margin-top: 8px; font-size: 11px; color: var(--orange); font-weight: 700; letter-spacing: 1px; }
 
@@ -182,7 +182,7 @@
     background: var(--ink);
     padding: 20px 18px; margin-top: 20px;
   }
-  .review-block h3 { font-size: 18px; font-weight: 900; color: var(--white); margin-bottom: 8px; letter-spacing: -0.3px; }
+  .review-block h2 { margin-top: 0;  font-size: 18px; font-weight: 900; color: var(--white); margin-bottom: 8px; letter-spacing: -0.3px; }
   .review-block p { font-size: 14px; line-height: 1.5; }
   .review-block .btn { margin-top: 6px; }
 
@@ -198,7 +198,7 @@
 <body>
 
 <header>
-  <img class="lockup" src="assets/logo-lockup.png" width="630" height="290" alt="Ninja Cat Co.">
+  <img class="lockup" fetchpriority="high" src="assets/logo-lockup.png" width="630" height="290" alt="Ninja Cat Co.">
   <div class="tagline">STEALTHY · MISCHIEVOUS · YOURS</div>
 </header>
 
@@ -223,7 +223,7 @@
 
     <div class="founder-note">
       <div class="label">REAL TALK</div>
-      <h3>Why we made this <span class="orange">playbook.</span></h3>
+      <h2>Why we made this <span class="orange">playbook.</span></h2>
       <p>
         We grew up with cats that thought they were ninjas — knocking pens off desks at 3am, vanishing into laundry baskets. Building the puppet was the easy part. The hard part was that <strong>half our beta testers' cats ignored it on day 1.</strong> So we tested intros for 6 months. This is what actually worked.
       </p>
@@ -247,7 +247,7 @@
       <div class="num">1</div>
       <div class="body">
         <div class="day-label">DAY 1</div>
-        <h3>Leave it near the food bowl</h3>
+        <h2>Leave it near the food bowl</h2>
         <div class="desc">Place the Ninja Cat next to where your cat eats. <strong>Don't move it. Don't play with it. Don't engage.</strong></div>
         <div class="why">Why: pairs the new object with safety (food). Lets curiosity build organically.</div>
       </div>
@@ -257,7 +257,7 @@
       <div class="num">2</div>
       <div class="body">
         <div class="day-label">DAY 2</div>
-        <h3>Bait it with fresh catnip</h3>
+        <h2>Bait it with fresh catnip</h2>
         <div class="desc">Rub <strong>fresh</strong> dried catnip (not the bagged stale stuff) on the gloves and hood. Walk away. Let them investigate alone.</div>
         <div class="why">Why: pairs the toy with reward without you hovering. Anxious cats won't engage with humans watching.</div>
       </div>
@@ -267,7 +267,7 @@
       <div class="num">3</div>
       <div class="body">
         <div class="day-label">DAY 3</div>
-        <h3>Slow play only</h3>
+        <h2>Slow play only</h2>
         <div class="desc">Slip the puppet on. <strong>Gentle, slow movements only.</strong> Drag the sleeve across the floor. Let them stalk. No sudden lunges.</div>
         <div class="why">Why: prey behavior triggers the hunt instinct. Sudden movement triggers the threat instinct. We want the first.</div>
       </div>
@@ -306,7 +306,7 @@
 
     <div class="review-block">
       <div class="label">ONE HUGE FAVOR</div>
-      <h3>Help another cat parent <span class="orange">find</span> this.</h3>
+      <h2>Help another cat parent <span class="orange">find</span> this.</h2>
       <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other shy-cat owners discover the playbook before they give up on puppet toys.</p>
       <p><strong>Tell them the truth.</strong> If it took 3 days, say so. If your cat's still figuring it out, say so. The most useful reviews are the specific ones.</p>
       <button class="btn" onclick="postReview()">Leave my honest review on Amazon</button>
@@ -333,7 +333,7 @@
 
     <div class="review-block">
       <div class="label">ONE HUGE FAVOR</div>
-      <h3>Help another cat parent <span class="orange">find</span> this.</h3>
+      <h2>Help another cat parent <span class="orange">find</span> this.</h2>
       <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other shy-cat owners decide if this is right for their cat.</p>
       <p><strong>Tell them the truth.</strong> If it took 3 days, say so. If your cat's still figuring it out, say so. The most useful reviews are the specific ones.</p>
       <button class="btn" onclick="postReview()">Leave my honest review on Amazon</button>
