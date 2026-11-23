@@ -22,6 +22,7 @@
 
   Flow:
     On load: check-in pop-up "How's it going so far?"
+      "I just opened the box"       -> 3-day playbook (step-3), with Back to the pop-up
       "It's going great"            -> full-screen review ask (step-review)
       "My cat's having trouble"     -> 3-day playbook (step-3), with Back to the pop-up
     Playbook -> step 4 "How'd it go?" -> step 5 (worked) / step 6 (troubleshooting)
@@ -230,8 +231,12 @@
     <h1 id="checkin-title">How's it <span class="orange">going</span> so far?</h1>
     <p>Tell us where you're at and we'll take you to the right place.</p>
     <div class="choices">
-      <button class="btn" id="choice-great" onclick="choose('great')">It's going great</button>
-      <button class="btn btn-outline" onclick="choose('trouble')">My cat's having trouble with it</button>
+      <!-- All three styled the same on purpose: an orange "going great" button pulls taps
+           from people who haven't tried it yet. "Just opened" goes first (most QR scans
+           happen at unboxing) and leads to the playbook. -->
+      <button class="btn btn-outline btn-choice" id="choice-first" onclick="choose('new')">I just opened the box</button>
+      <button class="btn btn-outline btn-choice" onclick="choose('great')">It's going great</button>
+      <button class="btn btn-outline btn-choice" onclick="choose('trouble')">My cat's having trouble with it</button>
     </div>
   </div>
 </div>
@@ -247,11 +252,11 @@
   <section class="step" id="step-review">
     <div class="eyebrow">One huge favor</div>
     <h1>Help another cat parent <span class="orange">find</span> this.</h1>
-    <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other cat owners decide if the Ninja Cat is right for their cat.</p>
-    <p><strong>Tell them the truth.</strong> What did your cat do? How long did it take? The most useful reviews are the specific ones.</p>
+    <p>We're a tiny brand, and every review on Amazon helps another Ninja Cat find its way to a new home — and a new cat to wrestle.</p>
     <div class="signoff">— JOHN, FOUNDER · NINJA CAT CO.</div>
-    <button class="btn" onclick="postReview()">Leave my honest review on Amazon</button>
-    <button class="link-btn" onclick="goStep(3)" style="margin-top: 14px;">Get the free 3-day playbook →</button>
+    <button class="btn" onclick="postReview()">Help us with a quick review</button>
+    <button class="btn btn-outline" onclick="goStep(3)" style="margin-top: 12px;">Not ready? Get the free playbook</button>
+    <p class="note">Cat not into it yet? The playbook fixes most first-week hiccups.</p>
   </section>
 
   <!-- ================= THE PLAYBOOK ================= -->
@@ -302,7 +307,7 @@
 
     <!-- Same review ask is reachable from the trouble path (anti-gating). Keep this. -->
     <div class="soft-review">
-      Want to share how it's going so far? <button class="link-btn" onclick="goStep('review')">Leave an honest review</button>
+      Want to help a tiny brand out? <button class="link-btn" onclick="goStep('review')">Leave a quick review</button>
     </div>
   </section>
 
@@ -327,9 +332,8 @@
     <div class="review-block">
       <div class="label">ONE HUGE FAVOR</div>
       <h2>Help another cat parent <span class="orange">find</span> this.</h2>
-      <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other cat owners decide if the Ninja Cat is right for their cat.</p>
-      <p><strong>Tell them the truth.</strong> If it took 3 days, say so. If your cat's still figuring it out, say so. The most useful reviews are the specific ones.</p>
-      <button class="btn" onclick="postReview()">Leave my honest review on Amazon</button>
+      <p>We're a tiny brand, and every review on Amazon helps another Ninja Cat find its way to a new home — and a new cat to wrestle.</p>
+      <button class="btn" onclick="postReview()">Help us with a quick review</button>
     </div>
   </section>
 
@@ -354,9 +358,8 @@
     <div class="review-block">
       <div class="label">ONE HUGE FAVOR</div>
       <h2>Help another cat parent <span class="orange">find</span> this.</h2>
-      <p>We're tiny. Every honest review on Amazon — <strong>good, bad, or in between</strong> — helps other cat owners decide if the Ninja Cat is right for their cat.</p>
-      <p><strong>Tell them the truth.</strong> If it took 3 days, say so. If your cat's still figuring it out, say so. The most useful reviews are the specific ones.</p>
-      <button class="btn" onclick="postReview()">Leave my honest review on Amazon</button>
+      <p>We're a tiny brand, and every review on Amazon helps another Ninja Cat find its way to a new home — and a new cat to wrestle.</p>
+      <button class="btn" onclick="postReview()">Help us with a quick review</button>
     </div>
     <button class="btn btn-outline" onclick="goStep(3)" style="margin-top: 14px;">← Re-read the playbook</button>
   </section>
@@ -388,16 +391,16 @@
   function openCheckin() {
     document.getElementById('checkin').hidden = false;
     document.body.classList.add('modal-open');
-    document.getElementById('choice-great').focus();
+    document.getElementById('choice-first').focus();
   }
   function choose(path) {
     document.getElementById('checkin').hidden = true;
     document.body.classList.remove('modal-open');
-    goStep(path === 'great' ? 'review' : 3);
+    goStep(path === 'great' ? 'review' : 3);  // 'new' + 'trouble' -> playbook
   }
   function postReview() { window.open(AMAZON_REVIEW_URL, '_blank', 'noopener'); }
 
-  document.getElementById('choice-great').focus();
+  document.getElementById('choice-first').focus();
 </script>
 
 </body>
